@@ -3,16 +3,16 @@ import Project from './components/Project';
 import Button from './components/Buttons';
 import './App.css';
 
-const BUTTON_LABEL_TEXTS = {
-  launch: 'Launch Project',
-  finish: 'Finish Project',
-};
-
 const PROJECT_STATES = {
   notStarted: 'Not Started',
   launched: 'Launched',
   finished: 'Finished',
   empty: '',
+};
+
+const BUTTON_LABEL_TEXTS = {
+  launch: 'Launch Project',
+  finish: 'Finish Project',
 };
 
 const App: React.FC = () => {

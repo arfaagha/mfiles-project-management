@@ -19,7 +19,7 @@ const Project: React.FC<ProjectProps> = ({ id, name, status, OnProjectClick, sta
   const projClass = `project status-${stateClass} ${isClickable? 'can-select':''}`;
 
   const handleProjectClick = (event: any) => {
-    //no need to perform any action if status === 'Finished'
+    //no need to perform any action if status is 'Finished'
     if(status !== 'Finished'){
       OnProjectClick(id, status, event);
       }

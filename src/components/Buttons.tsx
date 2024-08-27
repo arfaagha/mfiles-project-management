@@ -4,7 +4,7 @@ import React from 'react';
 type ButtonProps = {
   label: string;
   onClick: (event: any) => void;
-  disabled?: boolean;
+  disabled: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({ label, onClick, disabled }) => {
