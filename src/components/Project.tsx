@@ -15,8 +15,7 @@ export interface ProjectProps {
 }
 
 const Project: React.FC<ProjectProps> = ({ id, name, status, OnProjectClick, stateClass, isHighlighted, isClickable }) => {
-  const [currentSelection, setCurrentSelection] = useState<string>();
-
+ 
   const projClass = `project status-${stateClass} ${isClickable? 'can-select':''}`;
 
   const handleProjectClick = (event: any) => {

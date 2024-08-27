@@ -9,10 +9,8 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ label, onClick, disabled }) => {
   const OnButtonClick=(event: any)=>{
-    if(disabled){
-      //do nothing since the button is disabled
-    }
-    else{
+    //do nothing since the button is disabled
+    if(!disabled){
       onClick(event);
     }
   }

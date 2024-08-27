@@ -13,7 +13,7 @@ const PROJECT_STATES = {
   launched: 'Launched',
   finished: 'Finished',
   empty: '',
-}
+};
 
 const App: React.FC = () => {
 
