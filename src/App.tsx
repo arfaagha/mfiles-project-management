@@ -3,6 +3,18 @@ import Project from './components/Project';
 import Button from './components/Buttons';
 import './App.css';
 
+const BUTTON_LABEL_TEXTS = {
+  launch: 'Launch Project',
+  finish: 'Finish Project',
+};
+
+const PROJECT_STATES = {
+  notStarted: 'Not Started',
+  launched: 'Launched',
+  finished: 'Finished',
+  empty: '',
+}
+
 const App: React.FC = () => {
 
   const [selectedProjects, setSelectedProjects] = useState<number[]>([]);
@@ -32,19 +44,17 @@ const App: React.FC = () => {
   const [projects, setProjects] = useState(PROJECTS);
 
   const [isHighlighed, setHighlight] = useState<number[]>([]);
-  const [selectedState, setSelectedState] = useState<string>('');
+  const [selectedState, setSelectedState] = useState<string>(PROJECT_STATES.empty);
 
   const OnProjectClick = (projectId: number, status: string, event: any)=>{
     
-    if(status !== selectedState && selectedState !== ''){
-      //do nothing if another state is selected
-    }
-    else {
-    //unselect logic
+    //do nothing if another state is selected
+    if(status === selectedState || selectedState === PROJECT_STATES.empty){
+      //unselect logic
     if(selectedProjects.some(item => item === projectId)){
       setSelectedProjects(prevSelected=> prevSelected.filter(id=> id!== projectId))
       setHighlight(prevSelected=> prevSelected.filter(id=> id!== projectId));
-      selectedProjects.length >1 ? setSelectedState(status) : setSelectedState('');
+      selectedProjects.length >1 ? setSelectedState(status) : setSelectedState(PROJECT_STATES.empty);
     }
 
     else{
@@ -58,17 +68,17 @@ const App: React.FC = () => {
   const ChangeProjectStateClick = (event: any) => {
     let changeTo= event.target.innerText;
 
-    if(changeTo === "Finish Project"){
-      selectedProjects.map(project=> (updateProjectState(project, 'Finished')));
+    if(changeTo === BUTTON_LABEL_TEXTS.finish){
+      selectedProjects.map(project=> (updateProjectState(project, PROJECT_STATES.finished)));
     }
 
-    if(changeTo === "Launch Project"){
-      selectedProjects.map(project=> (updateProjectState(project, 'Launched')));
+    if(changeTo === BUTTON_LABEL_TEXTS.launch){
+      selectedProjects.map(project=> (updateProjectState(project, PROJECT_STATES.launched)));
     }
     //unselect the highlighted projects
     setHighlight([]);
     setSelectedProjects([]);
-    setSelectedState('');
+    setSelectedState(PROJECT_STATES.empty);
   };
 
   const updateProjectState = (id: number, newState: string) => {
@@ -79,8 +89,8 @@ const App: React.FC = () => {
     );
   };
 
-  const buttonFinish = {label: "Finish Project", onClick: ChangeProjectStateClick};
-  const buttonLaunch = {label: "Launch Project", onClick: ChangeProjectStateClick};
+  const buttonFinish = {label: BUTTON_LABEL_TEXTS.finish, onClick: ChangeProjectStateClick};
+  const buttonLaunch = {label: BUTTON_LABEL_TEXTS.launch, onClick: ChangeProjectStateClick};
 
   return (
     <div className="App">
@@ -90,12 +100,13 @@ const App: React.FC = () => {
       <div className="landing">
       <div className="dashboard">
       {projects.map(project => (
-        <Project OnProjectClick={OnProjectClick} {...project} stateClass={project.status.toLowerCase().replace(' ', '-')} isHighlighted= { isHighlighed.includes(project.id)} isClickable={(project.status=== selectedState || selectedState === '' ) && project.status !== 'Finished'} />
+        <Project OnProjectClick={OnProjectClick} {...project} stateClass={project.status.toLowerCase().replace(' ', '-')} isHighlighted= { isHighlighed.includes(project.id)} 
+        isClickable={(project.status=== selectedState || selectedState === PROJECT_STATES.empty ) && project.status !== PROJECT_STATES.finished} />
       ))}
     </div>
     <div className="controls">
-        <Button {...buttonLaunch} disabled={selectedState==='Launched' || selectedState === ''}></Button>
-        <Button {...buttonFinish} disabled={selectedState==='Not Started'|| selectedState === ''}></Button>
+        <Button {...buttonLaunch} disabled={selectedState=== PROJECT_STATES.launched || selectedState === PROJECT_STATES.empty}></Button>
+        <Button {...buttonFinish} disabled={selectedState=== PROJECT_STATES.notStarted || selectedState === PROJECT_STATES.empty}></Button>
     </div>
       </div>
     </div>
