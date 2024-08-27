@@ -1,38 +1,96 @@
+:root {
+  --main-white: #f0f0f0;
+  --main-blue: #308CCD;
+  --main-blue-hover: #5a9cca;
+  --status-not-started: #FFFFE0;
+  --status-launched: #90EE90;
+  --status-finished: #A9A9A9;
+  }
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  padding: 20px;
+  color: var(--main-white);
+}
+
+.landing {
+  display: flex;
+}
+
+.dashboard {
+  flex: 8;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.controls {
+  flex: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  padding: 20px 0px 20px 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.controls button {
+  width: 60%;
+  height: 70%;
+  background-color: var(--main-white);
+  border: 3px solid var(--main-blue);
+  color: var(--main-blue);
+  font-weight: bold;
+  text-wrap: pretty;
+}
+.controls button.can-click{
+  color: var(--main-white);
+  background-color: var(--main-blue-hover);
+  cursor: pointer;
+}
+
+.project {
+  border: 1px solid #ccc;
+  padding: 10px 0px 10px 10px;
+  margin: 10px 0px 10px 10px;
+  width: 90%;
+  border-right-width: 10px;
+}
+
+.status-not-started {
+  border-right-color: var(--status-not-started);
+}
+
+.status-not-started.can-select:hover , .status-launched.can-select:hover {
+  background-color: var(--main-blue-hover);
+  cursor: pointer;
+}
+
+.status-not-started.highlight {
+  background-color: var(--main-blue);
+  cursor: pointer;
+}
+
+.status-launched {
+  border-right-color: var(--status-launched);
+}
+
+.status-launched.highlight {
+  background-color: var(--main-blue);
+  cursor: pointer;
+}
+
+.status-finished {
+  border-right-color: var(--status-finished);
+}
+
+.project h2 {
+  margin: 0 0 10px 0;
+}
+.project-id {
+  display: none;
 }

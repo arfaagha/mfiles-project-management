@@ -1,5 +1,47 @@
 
-# mfiles-project-management
+# Project Management Application
+
+This is a TypeScript-based application designed to manage project states within a project list. It provides visual feedback and interaction capabilities for selecting, launching, and finishing projects. 
+
+## Features
+
+- **Project State Indication**: 
+  - Projects in the Project List are visually differentiated based on their state, using both text and color.
+  - The border color on the right side of each project item represents the project's state.
+
+- **Hover Interaction**:
+  - When hovering over a project item, the background color changes (e.g., to light blue) if the project is selectable, indicating its interactivity.
+
+- **Non-selectable Finished Projects**:
+  - Projects that have been completed are non-selectable. 
+  - Only projects with the same state can be selected simultaneously.
+
+- **Project Selection**:
+  - Clicking on a project selects it, changing the background color (e.g., to dark blue) to indicate selection.
+
+- **Project Unselection**:
+  - Clicking on a selected (highlighted) project unselects it, background color reverts to its initial state (e.g., white) post-action.
+
+- **Batch Actions**:
+  - After selecting one or more projects, users can apply actions such as "Launch" or "Finish" via buttons.
+  - The state of the selected projects is updated accordingly after the action is executed.
+  - The background color reverts to its initial state (e.g., white) post-action.
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 14.x or later recommended)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+- [TypeScript](https://www.typescriptlang.org/) (version 4.x or later)
+
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/yourusername/project-management-app.git
+   cd project-management-app
 
 # Getting Started with Create React App
 
