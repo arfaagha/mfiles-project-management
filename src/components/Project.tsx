@@ -11,22 +11,32 @@ export interface ProjectProps {
   stateClass: string;
   isHighlighted: boolean;
   isClickable: boolean;
-  OnProjectClick: (id: number, status: string, event: any)=> void;
+  OnProjectClick: (id: number, status: string, event: any) => void;
 }
 
-const Project: React.FC<ProjectProps> = ({ id, name, status, OnProjectClick, stateClass, isHighlighted, isClickable }) => {
- 
-  const projClass = `project status-${stateClass} ${isClickable? 'can-select':''}`;
+const Project: React.FC<ProjectProps> = ({
+  id,
+  name,
+  status,
+  OnProjectClick,
+  stateClass,
+  isHighlighted,
+  isClickable,
+}) => {
+  const projClass = `project status-${stateClass} ${isClickable ? 'can-select' : ''}`;
 
   const handleProjectClick = (event: any) => {
     //no need to perform any action if status is 'Finished'
-    if(status !== 'Finished'){
+    if (status !== 'Finished') {
       OnProjectClick(id, status, event);
-      }
+    }
   };
 
   return (
-    <div className= {`${isHighlighted? projClass + ' highlight': projClass}`} onClick={handleProjectClick}>
+    <div
+      className={`${isHighlighted ? projClass + ' highlight' : projClass}`}
+      onClick={handleProjectClick}
+    >
       <h2>{name}</h2>
       <p>{status}</p>
     </div>

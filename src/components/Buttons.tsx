@@ -8,14 +8,17 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ label, onClick, disabled }) => {
-  const OnButtonClick=(event: any)=>{
+  const OnButtonClick = (event: any) => {
     //do nothing since the button is disabled
-    if(!disabled){
+    if (!disabled) {
       onClick(event);
     }
-  }
+  };
   return (
-    <button onClick={OnButtonClick} className={`${!disabled? 'can-click': ''}`}>
+    <button
+      onClick={OnButtonClick}
+      className={`${!disabled ? 'can-click' : ''}`}
+    >
       {label}
     </button>
   );
